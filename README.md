@@ -30,7 +30,7 @@ Jide
 
 == Login
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of Yaktocat](https:ReadME/landingpage.png)
 
 == Search/Query
 
