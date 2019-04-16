@@ -65,7 +65,30 @@
 
   <div class="row">
     <div id="savedresultstable">
-      <h3 id="savedresultsheader">Saved Results</h3>
+
+      <h3 id="savedresultsheader">Saved Results:</h3>
+      <table class="responsive-card-table unstriped medium-12">
+        <thead>
+          <tr>
+            <th>Zip Code</th>
+            <th>Search</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="save-list">
+           {{#each saves}}
+            {{/each}}
+          {{!-- <td>Zip Code</td>
+          <td><button type="button" class="success button" id="savedsearchbutton">Search</button></td>
+          <td><button type="button" class="alert button" id="saveddeletebutton">Delete</button></td> --}}
+        </tbody>
+      </table>
+
+
+
+
+
+      {{!-- <h3 id="savedresultsheader">Saved Results</h3>
       <ul id="save-list" class="list-group">
         {{#each saves}}
         <li data-location="{{this.location}}" class="list-group-item">
@@ -73,12 +96,9 @@
           <button class="success button save-link">Search</button>
         </li>
         {{/each}}
-      </ul>
+      </ul> --}}
 
-      {{!-- <th>Zip Code</th>
-      <br>
-      <button type="button" class="success button">Save</button>
-      <button type="button" class="alert button">Delete</button></td> --}}
+
     </div>
   </div>
 
