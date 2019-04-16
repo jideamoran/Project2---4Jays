@@ -326,7 +326,7 @@ label {
 	font-size: 16px;
 }
 
-.searchbutton {
+#search, #save {
 	background-color: rgba(40, 39, 46, 0.7);
 	color: white;
 	font-size: 16px;
@@ -391,7 +391,7 @@ label {
 
 .responsive-card-table.unstriped tbody {
 	background-color: rgba(40, 39, 46, 0.8);
-	color: white;
+	color: cornflowerblue;
 }
 
 .responsive-card-table th {

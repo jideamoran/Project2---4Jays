@@ -85,7 +85,7 @@ module.exports = function (app) {
 
         var coordinates = lat + "," + lng;
 
-        var parkURL = "https://api.parkwhiz.com/v4/quotes/?q=coordinates:" + coordinates + "&start_time=" + now + "&end_time=" + later + "&api_key=fcfaf6b9d1d024aa2a29efeb6613428c41ec615b"
+        var parkURL = "https://api.parkwhiz.com/v4/quotes/?q=coordinates:" + coordinates + " distance:5&start_time=" + now + "&end_time=" + later + "&?sort=distance:asc&api_key=fcfaf6b9d1d024aa2a29efeb6613428c41ec615b"
 
         axios.get(parkURL).then(
           function (responseTwo) {
@@ -134,7 +134,12 @@ module.exports = function (app) {
  
             };
             console.log(objectTwo);
-            res.json(objectTwo);
+            var filtered = objectTwo.filter(function (el) {
+              return el != null;
+            });
+            
+            console.log(filtered);
+            res.json(filtered);
           }
         );
       }
