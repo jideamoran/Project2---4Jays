@@ -13,7 +13,10 @@ Purpose/ Description: Find parking in general area based on local/regional users
 2.
 3.
 4.
-5. Creators Info
+5. 
+
+
+Creator Info
 Joe
 LinkedIn:
 Twitter:
@@ -26,6 +29,8 @@ Jeff
 Jide
 
 == Login
+
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 == Search/Query
 
