@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var LocalData = sequelize.define("LocalData", {
         user: DataTypes.STRING,
-        location: DataTypes.STRING,
+        location: DataTypes.INTEGER,
         body: DataTypes.STRING
     });
     return LocalData;

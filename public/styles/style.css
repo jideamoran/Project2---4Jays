@@ -326,7 +326,7 @@ label {
 	font-size: 16px;
 }
 
-#searchbutton {
+.searchbutton {
 	background-color: rgba(40, 39, 46, 0.7);
 	color: white;
 	font-size: 16px;

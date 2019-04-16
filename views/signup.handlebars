@@ -1,4 +1,4 @@
-  <div class="container">
+{{!-- <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h2>Sign Up Form</h2>
@@ -21,7 +21,76 @@
         <p>Or log in <a href="/login">here</a></p>
       </div>
     </div>
+  </div> --}}
+
+
+
+<div class="bg">
+
+  <header class="subnav-hero-section">
+    <h1 class="subnav-hero-headline" id="header"><i class="fas fa-parking"></i> Parking Finder - <small>your spot, to
+        find all your parking.</small></h1>
+    <ul class="subnav-hero-subnav">
+      <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="/login"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+    </ul>
+  </header>
+
+  <div class="row">
+    <div class="large column-8">
+      <div class="form" id="signupform">
+        <form class="signup">
+          <div class="form-icons form-group">
+            <h5 id="signupbox">Sign up to keep your favorite spots.</h5>
+            <div class="input-group">
+              <span class="input-group-label">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <input class="input-group-field" type="email" id="email-input" placeholder="Email">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-label">
+                <i class="fa fa-key"></i>
+              </span>
+              <input class="input-group-field" type="password" id="password-input" placeholder="Password">
+            </div>
+          </div>
+          {{!-- alert message --}}
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+
+          <button type="submit" class="button expanded" id="signupbutton"><i class="fas fa-address-card"></i> Sign Up</button>
+        </form>
+      </div>
+    </div>
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
+
+  {{!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script> --}}
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+
+  <footer class="social-footer">
+    <div class="social-footer-center" id="copyright-text">
+      © 2019 4Jays
+    </div>
+    <div class="social-footer-icons">
+      <ul class="menu simple">
+        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.instagram.com/?hl=en"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a href="https://twitter.com/?lang=en"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- background image closing -->
+</div>
