@@ -70,6 +70,12 @@ var API = {
       type: "GET"
     });
   },
+  getZip: function (input) {
+    return $.ajax({
+      url: "api/zipget/" + input,
+      type: "GET"
+    });
+  },
   deleteExample: function (id) {
     return $.ajax({
       url: "api/favorites/" + id,
@@ -159,63 +165,94 @@ var handleFormSubmit = function (event) {
     .parent()
     .attr("userName");
 
-  var example = {
-    user: userName,
-    location: $examplelocation.val().trim(),
-    body: $exampleDescription.val().trim()
-  };
-
-  if (!(example.location && example.body)) {
-    alert("You must enter an example text and description!");
-    return;
+  if (typeof $examplelocation.val().trim() === "number") {
+    var example = {
+      user: userName,
+      location: $examplelocation.val().trim(),
+      body: $exampleDescription.val().trim()
+    };
+    if (!($examplelocation.val().trim() && $exampleDescription.val().trim())) {
+      alert("You must enter an example text and description!");
+      return;
+    }
+  
+    // console.log(example);
+  
+    API.saveExample(example).then(function () {
+    });
+    
+    $examplename.val("");
+    $examplelocation.val("");
+    $exampleDescription.val("");
   }
 
-  API.saveExample(example).then(function () {
-  });
-  
-  $examplename.val("");
-  $examplelocation.val("");
-  $exampleDescription.val("");
+  else {
+    var locationToFind = $examplelocation.val().trim()
+    // console.log(locationToFind);
+    API.getZip(locationToFind).then(function(data) {
+      // console.log(data);
+
+      var example = {
+        user: userName,
+        title: $examplelocation.val().trim(),
+        location: data, 
+        body: $exampleDescription.val().trim()
+      };
+      if (!($examplelocation.val().trim() && $exampleDescription.val().trim())) {
+        alert("You must enter an example text and description!");
+        return;
+      }
+    
+      // console.log(example);
+    
+      API.saveExample(example).then(function () {
+      });
+      
+      $examplename.val("");
+      $examplelocation.val("");
+      $exampleDescription.val("");
+
+    })
+  }
 };
 
 var handleFormSearch = function (event) {
   event.preventDefault();
   var search = $exampleSearch.val().trim();
 
-  API.getSearch(search).then(function (data) {
-    var $examples = data.map(function (example) {
-      var $a = $("<td>")
-        .text(example.body)
-        .attr("data-label", "Description");
-      // .attr("href", "/example/" + example.id);
-
-      var $pUser = $("<td>").text(example.user).attr("data-label", "Username");
-      var $pZip = $("<td>").text(example.location).attr("data-label", "Description");
-
-      var $li = $("<tr>")
-        .attr({
-          "data-id": example.id
-        })
-        .append($pUser)
-        .append($pZip)
-        .append($a);
-
-      // var $button = $("<button>")
-      //   .addClass("btn btn-danger float-right delete")
-      //   .text("ｘ");
-
-      // $li.append($button);
-
-      return $li;
-    });
-    $exampleList.empty();
-    $parkList.empty();
-    $exampleList.append($examples);
+  if (typeof search === "number") {
+    API.getSearch(search).then(function (data) {
+      var $examples = data.map(function (example) {
+        var $a = $("<td>")
+          .text(example.body)
+          .attr("data-label", "Description");
+        // .attr("href", "/example/" + example.id);
+  
+        var $pUser = $("<td>").text(example.user).attr("data-label", "Username");
+        var $pZip = $("<td>").text(example.title).attr("data-label", "Description");
+  
+        var $li = $("<tr>")
+          .attr({
+            "data-id": example.id
+          })
+          .append($pUser)
+          .append($pZip)
+          .append($a);
+  
+        // var $button = $("<button>")
+        //   .addClass("btn btn-danger float-right delete")
+        //   .text("ｘ");
+  
+        // $li.append($button);
+  
+        return $li;
+      });
+      $exampleList.empty();
+      $parkList.empty();
+      $exampleList.append($examples);
   });
-
-
   API.getPark(search).then(function (data) {
-    console.log(data);
+    // console.log(data);
     var $parkes = data.map(function (park) {
       var $a = $("<td>")
         .text(park.name)
@@ -243,6 +280,141 @@ var handleFormSearch = function (event) {
  
     $parkList.append($parkes);
   });
+}
+
+  else {
+
+    API.getZip(search).then(function(dataTwo) {
+      // console.log(dataTwo);
+
+      API.getSearch(dataTwo).then(function (data) {
+        var $examples = data.map(function (example) {
+          var $a = $("<td>")
+            .text(example.body)
+            .attr("data-label", "Description");
+          // .attr("href", "/example/" + example.id);
+    
+          var $pUser = $("<td>").text(example.user).attr("data-label", "Username");
+          var $pZip = $("<td>").text(example.title).attr("data-label", "Description");
+    
+          var $li = $("<tr>")
+            .attr({
+              "data-id": example.id
+            })
+            .append($pUser)
+            .append($pZip)
+            .append($a);
+    
+          // var $button = $("<button>")
+          //   .addClass("btn btn-danger float-right delete")
+          //   .text("ｘ");
+    
+          // $li.append($button);
+    
+          return $li;
+        });
+        $exampleList.empty();
+        $parkList.empty();
+        $exampleList.append($examples);
+    });
+
+    });
+    API.getPark(search).then(function (data) {
+      // console.log(data);
+      var $parkes = data.map(function (park) {
+        var $a = $("<td>")
+          .text(park.name)
+          .attr("data-label", "Name");
+  
+        var $pUser = $("<td>").text(park.address + ", " + park.city + ", " + park.state + " " + park.zip).attr("data-label", "Address");;
+        var $pZip = $("<td>").text(park.price).attr("data-label", "Price");;
+        var $pPrice = $("<td>").text(park.start + " - " + park.end).attr("data-label", "Time");
+  
+        var $li = $("<tr>")
+          .append($a)
+          .append($pUser)
+          .append($pZip)
+          .append($pPrice);
+     
+  
+        // var $button = $("<button>")
+        //   .addClass("btn btn-danger float-right delete")
+        //   .text("ｘ");
+  
+        // $li.append($button);
+  
+        return $li;
+      });
+   
+      $parkList.append($parkes);
+    });
+  }
+
+
+
+
+
+  // API.getSearch(search).then(function (data) {
+  //   var $examples = data.map(function (example) {
+  //     var $a = $("<td>")
+  //       .text(example.body)
+  //       .attr("data-label", "Description");
+  //     // .attr("href", "/example/" + example.id);
+
+  //     var $pUser = $("<td>").text(example.user).attr("data-label", "Username");
+  //     var $pZip = $("<td>").text(example.title).attr("data-label", "Description");
+
+  //     var $li = $("<tr>")
+  //       .attr({
+  //         "data-id": example.id
+  //       })
+  //       .append($pUser)
+  //       .append($pZip)
+  //       .append($a);
+
+  //     // var $button = $("<button>")
+  //     //   .addClass("btn btn-danger float-right delete")
+  //     //   .text("ｘ");
+
+  //     // $li.append($button);
+
+  //     return $li;
+  //   });
+  //   $exampleList.empty();
+  //   $parkList.empty();
+  //   $exampleList.append($examples);
+  // });
+
+
+  // API.getPark(search).then(function (data) {
+  //   console.log(data);
+  //   var $parkes = data.map(function (park) {
+  //     var $a = $("<td>")
+  //       .text(park.name)
+  //       .attr("data-label", "Name");
+
+  //     var $pUser = $("<td>").text(park.address + ", " + park.city + ", " + park.state + " " + park.zip).attr("data-label", "Address");;
+  //     var $pZip = $("<td>").text(park.price).attr("data-label", "Price");;
+  //     var $pPrice = $("<td>").text(park.start + " - " + park.end).attr("data-label", "Time");
+
+  //     var $li = $("<tr>")
+  //       .append($a)
+  //       .append($pUser)
+  //       .append($pZip)
+  //       .append($pPrice);
+   
+
+  //     // var $button = $("<button>")
+  //     //   .addClass("btn btn-danger float-right delete")
+  //     //   .text("ｘ");
+
+  //     // $li.append($button);
+
+  //     return $li;
+  //   });
+ 
+  //   $parkList.append($parkes);
+  // });
 
 
 
@@ -288,7 +460,7 @@ var handleFavoriteClick = function () {
       // .attr("href", "/example/" + example.id);
 
       var $pUser = $("<td>").text(example.user).attr("data-label", "Username");
-      var $pZip = $("<td>").text(example.location).attr("data-label", "Description");
+      var $pZip = $("<td>").text(example.title).attr("data-label", "Description");
 
       var $li = $("<tr>")
         .attr({
@@ -313,7 +485,7 @@ var handleFavoriteClick = function () {
   });
 
   API.getPark(locationToRun).then(function (data) {
-    console.log(data);
+    // console.log(data);
     var $parkes = data.map(function (park) {
       var $a = $("<td>")
         .text(park.name)
@@ -343,7 +515,7 @@ var handleFavoriteClick = function () {
 };
 
 $("#logout").on("click", function() {
-  console.log("logout clicked")
+  // console.log("logout clicked")
   return $.ajax({
     url: "/logout",
     type: "GET"
