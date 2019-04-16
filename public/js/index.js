@@ -88,11 +88,11 @@ var loadSaved = function (input) {
   API.getSavedLoad(input).then(function (data) {
     // console.log(data);
     var $saves = data.Favorites.map(function (save) {
-      var $div = $("<div>")
+      var $div = $("<td>")
         .text(save.location)
         .addClass("save-link")
 
-      var $li = $("<li>")
+      var $li = $("<tr>")
         .attr({
           class: "list-group-item",
           "data-location": save.location,
@@ -100,17 +100,34 @@ var loadSaved = function (input) {
         })
         .append($div);
 
+      var searchTD = $("<td>").attr({
+          class: "list-group-item",
+          "data-location": save.location,
+          "data-id": save.id
+        });
       var $button = $("<button>")
-        .addClass("success button float-left save-link")
+        .addClass("success button save-link")
+        .attr("id", "savedsearchbutton")
         .text("Search");
 
-      $li.append($button);
+        searchTD.append($button);
 
+      $li.append(searchTD);
+
+      var deleteTD = $("<td>")
+      .attr({
+        class: "list-group-item",
+        "data-location": save.location,
+        "data-id": save.id
+      });
       var $buttonDelete = $("<button>")
-        .addClass("alert button float-right delete")
+        .addClass("alert button delete")
+        .attr("id", "saveddeletebutton")
         .text("Delete");
 
-      $li.append($buttonDelete);
+        deleteTD.append($buttonDelete);
+
+      $li.append(deleteTD);
 
       return $li;
     });
@@ -451,6 +468,8 @@ var handleFavoriteClick = function () {
   var locationToRun = $(this)
     .parent()
     .attr("data-location");
+
+    console.log(locationToRun);
 
   API.getSearch(locationToRun).then(function (data) {
     var $examples = data.map(function (example) {

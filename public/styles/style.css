@@ -372,7 +372,7 @@ label {
 
 #savedresultstable {
 	background-color: rgba(40, 39, 46, 0.8);
-	width: 75%;
+	width: 60%;
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 50px;
@@ -545,4 +545,10 @@ label,
 .social-footer .social-footer-icons .fab:hover {
 	color: #09bbf1;
 	transition: color 0.2s ease-in;
+}
+
+#savedsearchbutton,
+#saveddeletebutton {
+	margin-top: 20px;
+	margin-left: 80px;
 }
