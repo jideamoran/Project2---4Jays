@@ -67,7 +67,9 @@ module.exports = function (app) {
     axios.get(googleURL).then(
       function (response) {
         console.log("\n" + input + "\n")
+
         var location = response.data.results[0].geometry.location
+        console.log(response.data.results[0]);
         // console.log(location);
 
         var lat = JSON.stringify(location.lat);
@@ -196,4 +198,53 @@ module.exports = function (app) {
     req.logout();
     res.redirect('/');
   });
+
+  app.get("/api/zipget/:title", function(req, res){
+     var input = req.params.title;
+     console.log(input)
+
+     var googleURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + input + "&key=AIzaSyA_Lt2iyOCQB8ExzXNaVUl46NbUh0QY1WM";
+
+     axios.get(googleURL).then(
+      function (response) {
+    
+
+        var location = response.data.results[0].geometry.location
+        console.log(location);
+        // console.log("yay!" + location);
+
+        var lat = JSON.stringify(location.lat);
+        var lng = JSON.stringify(location.lng);
+
+        var coordinates = lat + "," + lng;
+
+        var latlngFind = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coordinates + "&key=AIzaSyA_Lt2iyOCQB8ExzXNaVUl46NbUh0QY1WM"
+
+        axios.get(latlngFind).then(
+          function (responseTwo) {
+            console.log(responseTwo.data.results[0].address_components);
+            var resLength = responseTwo.data.results[0].address_components.length - 1;
+            console.log(resLength);
+            var zip = responseTwo.data.results[0].address_components[resLength].long_name;
+            console.log(zip.toString().length)
+            
+            if (zip.toString().length === 5) {
+              res.json(zip);
+            }
+            else {
+              var zipTwo = responseTwo.data.results[0].address_components[resLength - 1].long_name
+              res.json(zipTwo);
+            }
+
+        
+
+          }
+        );
+      }
+    );
+     
+  });
+
 };
+
+
