@@ -190,7 +190,7 @@ var handleFormSubmit = function (event) {
     var locationToFind = $examplelocation.val().trim()
     // console.log(locationToFind);
     API.getZip(locationToFind).then(function(data) {
-      // console.log(data);
+      console.log(data);
 
       var example = {
         user: userName,
@@ -259,7 +259,7 @@ var handleFormSearch = function (event) {
         .attr("data-label", "Name");
 
       var $pUser = $("<td>").text(park.address + ", " + park.city + ", " + park.state + " " + park.zip).attr("data-label", "Address");;
-      var $pZip = $("<td>").text(park.price).attr("data-label", "Price");;
+      var $pZip = $("<td>").text("$" + park.price).attr("data-label", "Price");;
       var $pPrice = $("<td>").text(park.start + " - " + park.end).attr("data-label", "Time");
 
       var $li = $("<tr>")
@@ -285,7 +285,7 @@ var handleFormSearch = function (event) {
   else {
 
     API.getZip(search).then(function(dataTwo) {
-      // console.log(dataTwo);
+      console.log(dataTwo);
 
       API.getSearch(dataTwo).then(function (data) {
         var $examples = data.map(function (example) {
@@ -327,7 +327,7 @@ var handleFormSearch = function (event) {
           .attr("data-label", "Name");
   
         var $pUser = $("<td>").text(park.address + ", " + park.city + ", " + park.state + " " + park.zip).attr("data-label", "Address");;
-        var $pZip = $("<td>").text(park.price).attr("data-label", "Price");;
+        var $pZip = $("<td>").text("$" + park.price).attr("data-label", "Price");;
         var $pPrice = $("<td>").text(park.start + " - " + park.end).attr("data-label", "Time");
   
         var $li = $("<tr>")
@@ -492,7 +492,7 @@ var handleFavoriteClick = function () {
         .attr("data-label", "Name");
 
       var $pUser = $("<td>").text(park.address + ", " + park.city + ", " + park.state + " " + park.zip).attr("data-label", "Address");;
-      var $pZip = $("<td>").text(park.price).attr("data-label", "Price");;
+      var $pZip = $("<td>").text("$" + park.price).attr("data-label", "Price");;
       var $pPrice = $("<td>").text(park.start + " - " + park.end).attr("data-label", "Time");
 
       var $li = $("<tr>")
