@@ -1,4 +1,4 @@
-<div id="home">
+{{!-- <div id="home">
   <div class="container">
     <div class="row">
            <h2>Welcome <span class="member-name"></span></h2>
@@ -28,7 +28,163 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+
+<div class="bg">
+
+  <header class="subnav-hero-section">
+    <h1 class="subnav-hero-headline" id="header"><i class="fas fa-parking"></i> Parking Finder - <small>your spot, to
+        find all your parking. <br>Welcome <span class="member-name"></span></small></h1>
+    <ul class="subnav-hero-subnav">
+      {{!-- <li><a href="/"><i class="fas fa-home"></i> Home</a></li> --}}
+      <li><a href="/logout" id="logoutbutton"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+    </ul>
+  </header>
+
+  <div class="row">
+    <div class="large column-8">
+      <div class="translucent-form-overlay">
+        <form>
+          <h5 id="searchparkingheader">Search for Parking</h5>
+          <div class="row columns">
+            <label>Location or Address or City or Zip
+              <input type="text" name="location" placeholder="Any" id="example-search" class="form-control">
+            </label>
+          </div>
+          <button type="button" class="primary button expanded search-button searchbutton" id="search">
+            <i class="fas fa-search-location"></i> Search for Parking
+          </button>
+          <button type="button" class="primary button expanded search-button searchbutton" id="save">
+            <i class="fas fa-bookmark" aria-hidden="true"></i> Save For Later
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div id="savedresultstable">
+      <h3 id="savedresultsheader">Saved Results</h3>
+      <ul id="save-list" class="list-group">
+        {{#each saves}}
+        <li data-location="{{this.location}}" class="list-group-item">
+          <p>{{this.location}}</p>
+          <button class="success button save-link">Search</button>
+        </li>
+        {{/each}}
+      </ul>
+
+      {{!-- <th>Zip Code</th>
+      <br>
+      <button type="button" class="success button">Save</button>
+      <button type="button" class="alert button">Delete</button></td> --}}
+    </div>
+  </div>
+
+  <div class="row" id="reviewstable">
+    <h3>Reviews</h3>
+    <form action="POST">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x" id="submitForm">
+          <div class="medium-6 cell">
+            <label>Location Zip Code
+              <input type="text" placeholder="32801" id="example-location">
+            </label>
+          </div>
+          <label>
+            Review
+            <textarea id="example-description"
+              placeholder="'Great parking, close to venue, well lit & reasonable price'"></textarea>
+          </label>
+          <button type="submit" id="submit" class="success button">Submit</button>
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+
+  <div class="row">
+    <div id="parkwhizresults">
+      <h3 id="resultsheader">What The Locals Say:</h3>
+      <table class="responsive-card-table unstriped medium-12">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Location</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody id="example-list">
+          {{#each examples}}
+          <td data-id="{{this.id}}">
+            <div>{{this.body}}</div>
+          </td>
+          {{/each}}
+          {{!-- <tr>
+            <td data-label="Username">"Parking lot A"</td>
+            <td data-label="Location">"1234 Main St"</td>
+            <td data-label="Description">"$20.00"</td>
+          </tr> --}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="parkwhizresults">
+      <h3 id="resultsheader">What's Open:</h3>
+      <table class="responsive-card-table unstriped medium-12">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Price</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="park-list">
+          {{#each parkes}}
+          <li data-name="{{this.name}}">
+            <div>{{this.address}}</div>
+          </li>
+          {{/each}}
+
+          {{!-- <tr>
+            <td data-label="Name">"Parking lot A"</td>
+            <td data-label="Address">"1234 Main St"</td>
+            <td data-label="Price">"$20.00"</td>
+            <td data-label="Time">"2:00 - 4:00"</td>
+          </tr> --}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
+  {{!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script> --}}
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+
+  <footer class="social-footer">
+    <div class="social-footer-center" id="copyright-text">
+      © 2019 4Jays
+    </div>
+    <div class="social-footer-icons">
+      <ul class="menu simple">
+        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.instagram.com/?hl=en"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a href="https://twitter.com/?lang=en"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- background image closing -->
+</div>
