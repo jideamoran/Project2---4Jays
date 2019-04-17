@@ -166,6 +166,7 @@ var refreshExamples = function () {
       // $li.append($button);
 
       return $li;
+      
     });
 
     $parkList.empty();
