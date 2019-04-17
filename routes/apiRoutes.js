@@ -29,7 +29,6 @@ module.exports = function (app) {
     }).catch(function (err) {
       console.log(err);
       res.json(err);
-      // res.status(422).json(err.errors[0].message);
     });
   });
 
@@ -240,16 +239,11 @@ module.exports = function (app) {
               var zipTwo = responseTwo.data.results[0].address_components[resLength - 1].long_name
               res.json(zipTwo);
             }
-
-        
-
           }
         );
       }
     );
-     
   });
-
 };
 
 

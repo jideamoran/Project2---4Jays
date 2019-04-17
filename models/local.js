@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var LocalData = sequelize.define("LocalData", {
         user: DataTypes.STRING,
         title: {
