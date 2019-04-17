@@ -43,17 +43,18 @@ To Run in Terminal
 <img width="937" alt="project2" src="https://user-images.githubusercontent.com/37279232/56252875-065ba980-6088-11e9-8a49-1c24394c9034.png">
 
 Creator Info
-Joe
+
+Joe-
 LinkedIn: https://www.linkedin.com/in/josephfalconetti/
 Github: https://github.com/J-Falconetti
 
-Jordan
+Jordan-
 LinkedIn: https://www.linkedin.com/in/josephfalconetti/
 Github: https://github.com/J-Falconetti
 
-Jeff
+Jeff-
 
-Jide
+Jide-
 LinkedIn: https://www.linkedin.com/in/ooamoran/
 Github: https://github.com/jideamoran
 
