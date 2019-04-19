@@ -36,13 +36,16 @@ Search Parameters
 To Run in Terminal
 
 1. npm i
+
 2 npm i mysql
+
 3 npm i sequelize
+
 	4 - sequelize db:create 
   
 <img width="937" alt="project2" src="https://user-images.githubusercontent.com/37279232/56252875-065ba980-6088-11e9-8a49-1c24394c9034.png">
 
-Creator Info
+*Creator Info*
 
 Joe-
 LinkedIn: https://www.linkedin.com/in/josephfalconetti/
@@ -63,6 +66,9 @@ Github: https://github.com/jideamoran
 
 
 == Dependencies
+
+<img width="937" alt="dependencies" src="https://user-images.githubusercontent.com/37279232/56426250-93b81d00-6285-11e9-83a9-138c0f043f63.png">
+
 
 
 == If program is not running correctly, please check our list of dependecies.
