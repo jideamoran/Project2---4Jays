@@ -76,6 +76,6 @@ Github: https://github.com/jideamoran
 
 If necessary, install missing attributes
 
-<img width="1089" alt="dependencies" src="https://user-images.githubusercontent.com/37279232/56253481-8551e180-608a-11e9-8d4a-d0193c16c91c.png">
+
 
 
