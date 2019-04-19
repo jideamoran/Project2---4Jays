@@ -49,10 +49,12 @@ LinkedIn: https://www.linkedin.com/in/josephfalconetti/
 Github: https://github.com/J-Falconetti
 
 Jordan-
-LinkedIn: https://www.linkedin.com/in/josephfalconetti/
-Github: https://github.com/J-Falconetti
+LinkedIn: https://github.com/jwerre1
+Github: https://www.linkedin.com/in/jordan-werre/
 
 Jeff-
+LinkedIn: https://www.linkedin.com/in/jeff-ambrosini
+Github: https://github.com/jeffa777
 
 Jide-
 LinkedIn: https://www.linkedin.com/in/ooamoran/
